@@ -13,7 +13,7 @@ def main():
         'country' : ''
     }
     stop_event = threading.Event()
-    sem = threading.Semaphore(50)  # Limit to 50 concurrent threads
+    sem = threading.Semaphore(72)  # Limit to 72 concurrent threads which is the number of countries represented on platesmania.com
     lock = threading.Lock()
 
     with open('countries.json') as f:
@@ -24,7 +24,7 @@ def main():
         for country, country_code in countries.items():
             if stop_event.is_set():
                 break
-            sem.acquire()  # Wait if there are already 50 active threads
+            sem.acquire()  # Wait if there are already 72 active threads
             t = threading.Thread(target=looper, args=(country_code, country))
             threads.append(t)
             t.start()
