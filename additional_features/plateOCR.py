@@ -8,16 +8,16 @@ import matplotlib.pyplot as plt
 
 
 def coordinates(img):
-  reader = easyocr.Reader(['en'])
-  # Turn link into readable image
-  output = reader.readtext(img)
-  cord = output[-1][0]
-  x_min, y_min = [int(min(idx)) for idx in zip(*cord)]
-  x_max, y_max = [int(max(idx)) for idx in zip(*cord)]
-  image = cv2.imread(img)
-  plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    reader = easyocr.Reader(['en'])
+    # Turn link into readable image
+    output = reader.readtext(img)
+    cord = output[-1][0]
+    x_min, y_min = [int(min(idx)) for idx in zip(*cord)]
+    x_max, y_max = [int(max(idx)) for idx in zip(*cord)]
+    image = cv2.imread(img)
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 
-  return x_min, y_min, x_max, y_max
+    return x_min, y_min, x_max, y_max
 
 def download_image(url, filename):
     context = ssl._create_unverified_context()
@@ -35,5 +35,5 @@ def download_image(url, filename):
         f.write(u.read())
 
 # Now you can use this function to download the image:
-# download_image('https://img03.platesmania.com/230715/o/22063239.jpg','test.jpg')
-print(coordinates('temp_img/test.jpg'))
+download_image('https://img03.platesmania.com/230523/o/21622645.jpg','test.jpg')
+# print(coordinates('temp_img/test.jpg'))
