@@ -1,1 +1,11 @@
 lxml
+python-dotenv
+cv2
+easyocr
+urllib.request
+ssl
+matplotlib.pyplot
+random
+math
+numpy
+os

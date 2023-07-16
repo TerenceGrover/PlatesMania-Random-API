@@ -3,8 +3,9 @@ import requests
 import json
 import random
 from lxml import html
+from additional_features.plateOCR import main as ocr
 
-def main():
+def main(difficulty):
     global last, obj, stop_event, sem, lock
     last = random.randint(21500000, 22063368)
     obj = {
@@ -39,6 +40,8 @@ def main():
     obj['link'] = get_image_src(obj['link'])
     if obj['link'] is None:
         return main()
+    if difficulty == 'hard':
+        ocr(obj['link'])
     return obj
 
 def looper(country_code, country):
@@ -77,4 +80,4 @@ def get_image_src(url):
         return None
 
 if __name__ == '__main__':
-    print(main())
+    print(main('hard'))
