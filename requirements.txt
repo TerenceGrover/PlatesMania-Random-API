@@ -1,11 +1,8 @@
 lxml
 python-dotenv
-cv2
+opencv-python
 easyocr
-urllib.request
-ssl
-matplotlib.pyplot
-random
-math
+matplotlib
 numpy
-os
+flask
+flask-cors

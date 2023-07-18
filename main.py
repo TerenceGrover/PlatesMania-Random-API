@@ -4,6 +4,20 @@ import json
 import random
 from lxml import html
 from additional_features.plateOCR import main as ocr
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+# Setup flask app and endpoints
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/api/plate/easy', methods=['GET'])
+def get_plate():
+    return jsonify(main('easy'))
+
+@app.route('/api/plate/hard', methods=['GET'])
+def get_plate_hard():
+    return jsonify(main('hard'))
 
 def main(difficulty):
     global last, obj, stop_event, sem, lock
@@ -39,7 +53,7 @@ def main(difficulty):
 
     obj['link'] = get_image_src(obj['link'])
     if obj['link'] is None:
-        return main()
+        return main(difficulty)
     if difficulty == 'hard':
         ocr(obj['link'])
     return obj
@@ -79,5 +93,6 @@ def get_image_src(url):
         # Restart
         return None
 
+
 if __name__ == '__main__':
-    print(main('hard'))
+    app.run()
